@@ -25,4 +25,4 @@ COPY --from=builder /app/app .
 RUN chmod +x /app/app
 
 ENTRYPOINT ["/app/app"]
-CMD ["-host", "example-client.cgl.svc.cluster.local:2888"]
+

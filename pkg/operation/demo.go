@@ -5,25 +5,37 @@ import (
 	"fmt"
 	"git.qihoo.cloud/q8s/operator-test-etcd/pkg/xray"
 	"github.com/coreos/etcd/clientv3"
+	"github.com/coreos/etcd/pkg/transport"
 	"time"
 )
 
 var path = "/test"
+
 //var host = flag.String("host", "10.217.62.28:32181", "The ip:port of zookeeper cluster.")
 
 //var (
 //	config clientv3.Config
 //	client *clientv3.Client
- //   err error
+//   err error
 //	kv clientv3.KV
 //)
 
-
 func Run() {
+	tlsInfo := transport.TLSInfo{
+		CertFile: "/etc/etcdtls/operator/etcd-tls/etcd-client.crt",
+		KeyFile:  "/etc/etcdtls/operator/etcd-tls/etcd-client.key",
+		CAFile:   "/etc/etcdtls/operator/etcd-tls/etcd-client-ca.crt",
+	}
+	tlsConfig, err := tlsInfo.ClientConfig()
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	// 客户端配置
 	config := clientv3.Config{
-		Endpoints: []string{"10.111.7.178:2379"},
+		Endpoints:   []string{"https://10.111.7.178:2379"},
 		DialTimeout: 5 * time.Second,
+		TLS:         tlsConfig,
 	}
 	// 建立连接
 	client, err := clientv3.New(config)
@@ -53,12 +65,11 @@ func Run() {
 
 }
 
-
 // 一次事务操作
 func run(client *clientv3.Client) {
 	var kv clientv3.KV
 	kv = clientv3.NewKV(client)
-	putResp, errCreate := kv.Put(context.TODO(),path , "Hello World!" )
+	putResp, errCreate := kv.Put(context.TODO(), path, "Hello World!")
 	if errCreate != nil {
 		xray.ErrMini(errCreate)
 	}
@@ -68,12 +79,10 @@ func run(client *clientv3.Client) {
 			string(putResp.PrevKv.Value), putResp.PrevKv.CreateRevision, putResp.PrevKv.ModRevision, putResp.PrevKv.Version)
 	}
 
-
-
 	// create
 	alpha := 'a'
 	for i := 0; i < 26; i++ {
-		putResp, errCreate := kv.Put(context.TODO(),path + "/" + string(alpha), "Hello World!" + string(alpha))
+		putResp, errCreate := kv.Put(context.TODO(), path+"/"+string(alpha), "Hello World!"+string(alpha))
 		if errCreate != nil {
 			xray.ErrMini(errCreate)
 		}
@@ -84,7 +93,6 @@ func run(client *clientv3.Client) {
 		}
 		alpha++
 	}
-
 
 	// delete
 	for i := 0; i < 26; i++ {
@@ -118,5 +126,3 @@ func run(client *clientv3.Client) {
 	fmt.Println("deleted: ", delResp)
 	time.Sleep(time.Second)
 }
-
-

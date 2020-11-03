@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f74bec2c-cd14-43a8-9788-0cfea21ce4dc" name="Default Changelist" comment="" />
+    <list default="true" id="f74bec2c-cd14-43a8-9788-0cfea21ce4dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/operation/demo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/operation/demo.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +19,11 @@
     </option>
   </component>
   <component name="GOROOT" path="D:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1jlwxYDvdgwmRK4ETLkvKg1DbLq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,6 +60,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="888" y="310" key="EnvironmentVariablesDialog/0.0.1536.824/-1920.0.1920.1160@0.0.1536.824" timestamp="1604392618378" />
+    <state x="640" y="310" key="Github.ShareDialog" timestamp="1604401863631">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="640" y="310" key="Github.ShareDialog/0.0.1536.824/-1920.0.1920.1160@0.0.1536.824" timestamp="1604401863631" />
+    <state x="626" y="117" key="Github.UntrackedFilesDialog" timestamp="1604401876253">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="626" y="117" key="Github.UntrackedFilesDialog/0.0.1536.824/-1920.0.1920.1160@0.0.1536.824" timestamp="1604401876253" />
     <state x="502" y="95" key="SettingsEditor" timestamp="1604394664276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
