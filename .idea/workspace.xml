@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f74bec2c-cd14-43a8-9788-0cfea21ce4dc" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="D:\Go" />
+  <component name="ProjectId" id="1jlwxYDvdgwmRK4ETLkvKg1DbLq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\工作\ETCD\etcd-test" />
+      <recent name="E:\工作\ETCD\etcd-test\pkg" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\工作\ETCD\etcd-test\pkg\operation" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="888" y="310" key="EnvironmentVariablesDialog" timestamp="1604392618378">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="888" y="310" key="EnvironmentVariablesDialog/0.0.1536.824/-1920.0.1920.1160@0.0.1536.824" timestamp="1604392618378" />
+    <state x="502" y="95" key="SettingsEditor" timestamp="1604394664276">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="502" y="95" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1160@0.0.1536.824" timestamp="1604394664276" />
+  </component>
+</project>
