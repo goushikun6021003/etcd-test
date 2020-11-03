@@ -4,9 +4,11 @@ import (
 	"context"
 	"fmt"
 	"git.qihoo.cloud/q8s/operator-test-etcd/pkg/xray"
-	"github.com/coreos/etcd/clientv3"
+
 	"github.com/coreos/etcd/pkg/transport"
 	"time"
+
+	"github.com/coreos/etcd/clientv3"
 )
 
 var path = "/test"
@@ -55,7 +57,7 @@ func Run() {
 		go func() {
 			for v := range watchCh {
 				for _, e := range v.Events {
-					fmt.Printf("type:%v kv:%v  prevKey:%v \n ", e.Type, string(e.Kv.Key), e.PrevKv)
+					fmt.Printf("type:%v kv:%v  prevKey:%v \n ", e.Type, string(e.Kv.Key), e.Kv)
 				}
 
 			}
@@ -74,10 +76,10 @@ func run(client *clientv3.Client) {
 		xray.ErrMini(errCreate)
 	}
 	fmt.Println(putResp.Header.Revision)
-	if putResp.PrevKv != nil {
-		fmt.Printf("prev Value: %s \n CreateRevision : %d \n ModRevision: %d \n Version: %d \n",
-			string(putResp.PrevKv.Value), putResp.PrevKv.CreateRevision, putResp.PrevKv.ModRevision, putResp.PrevKv.Version)
-	}
+	//if putResp.Header != nil {
+	//	fmt.Printf("prev Value: %s \n CreateRevision : %d \n ModRevision: %d \n Version: %d \n",
+	//		string(putResp.), putResp.PrevKv.CreateRevision, putResp.PrevKv.ModRevision, putResp.PrevKv.Version)
+	//}
 
 	// create
 	alpha := 'a'
@@ -87,10 +89,10 @@ func run(client *clientv3.Client) {
 			xray.ErrMini(errCreate)
 		}
 		fmt.Println(putResp.Header.Revision)
-		if putResp.PrevKv != nil {
-			fmt.Printf("prev Value: %s \n CreateRevision : %d \n ModRevision: %d \n Version: %d \n",
-				string(putResp.PrevKv.Value), putResp.PrevKv.CreateRevision, putResp.PrevKv.ModRevision, putResp.PrevKv.Version)
-		}
+		//if putResp.PrevKv != nil {
+		//	fmt.Printf("prev Value: %s \n CreateRevision : %d \n ModRevision: %d \n Version: %d \n",
+		//		string(putResp.PrevKv.Value), putResp.PrevKv.CreateRevision, putResp.PrevKv.ModRevision, putResp.PrevKv.Version)
+		//}
 		alpha++
 	}
 
