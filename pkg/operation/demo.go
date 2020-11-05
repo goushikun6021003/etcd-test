@@ -35,7 +35,7 @@ func Run() {
 
 	// 客户端配置
 	config := clientv3.Config{
-		Endpoints:   []string{"https://10.111.7.178:2379"},
+		Endpoints:   []string{"cilium-etcd-client.kube-system.svc:2379"},
 		DialTimeout: 5 * time.Second,
 		TLS:         tlsConfig,
 	}
@@ -46,22 +46,26 @@ func Run() {
 		panic(err)
 	}
 
-	defer client.Close()
+	defer func() {
+		if err := client.Close(); err != nil {
+			fmt.Println(err)
+		}
+	}()
+	watchCh := client.Watch(context.TODO(), path)
+	go func() {
+		for v := range watchCh {
+			for _, e := range v.Events {
+				fmt.Printf("type:%v kv:%v  prevKey:%v \n ", e.Type, string(e.Kv.Key), e.Kv)
+			}
 
+		}
+	}()
 	taskConnect := time.NewTicker(2 * time.Second)
 	for {
 		<-taskConnect.C
 		fmt.Println("################# 一轮迭代 ###########")
 		// 开始监听path
-		watchCh := client.Watch(context.TODO(), path)
-		go func() {
-			for v := range watchCh {
-				for _, e := range v.Events {
-					fmt.Printf("type:%v kv:%v  prevKey:%v \n ", e.Type, string(e.Kv.Key), e.Kv)
-				}
 
-			}
-		}()
 		run(client)
 	}
 
@@ -88,6 +92,7 @@ func run(client *clientv3.Client) {
 		if errCreate != nil {
 			xray.ErrMini(errCreate)
 		}
+		fmt.Println(putResp.Header.Marshal())
 		fmt.Println(putResp.Header.Revision)
 		//if putResp.PrevKv != nil {
 		//	fmt.Printf("prev Value: %s \n CreateRevision : %d \n ModRevision: %d \n Version: %d \n",
@@ -104,12 +109,20 @@ func run(client *clientv3.Client) {
 		getResp, err := kv.Get(context.TODO(), newPath)
 		if err != nil {
 			fmt.Println(err)
+			continue
 		}
+		// if key doesn't exist
+		if len(getResp.Kvs) == 0 {
+			fmt.Println("The key doesn't exist!")
+			continue
+		}
+
 		fmt.Printf("Key is s %s \n Value is %s \n", getResp.Kvs[0].Key, getResp.Kvs[0].Value)
 
 		delResp, errDelete := kv.Delete(context.TODO(), newPath)
 		if errDelete != nil {
 			xray.ErrMini(errDelete)
+			continue
 		}
 
 		fmt.Println("deleted: ", delResp)
@@ -118,11 +131,17 @@ func run(client *clientv3.Client) {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	if len(getResp.Kvs) == 0 {
+		fmt.Println("The key doesn't exist!")
+		return
+	}
 	fmt.Printf("Key is s %s \n Value is %s \n", getResp.Kvs[0].Key, getResp.Kvs[0].Value)
 
 	delResp, errDelete := kv.Delete(context.TODO(), path)
 	if errDelete != nil {
 		xray.ErrMini(errDelete)
+		return
 	}
 
 	fmt.Println("deleted: ", delResp)
